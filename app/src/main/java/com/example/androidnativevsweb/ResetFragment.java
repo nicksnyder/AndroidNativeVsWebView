@@ -16,5 +16,4 @@ public class ResetFragment extends Fragment {
                            Bundle savedInstanceState) {
     return inflater.inflate(R.layout.fragment_reset, container, false);
   }
-
 }

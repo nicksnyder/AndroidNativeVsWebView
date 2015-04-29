@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,14 +15,15 @@ import com.facebook.drawee.view.SimpleDraweeView;
 
 /**
  */
-public class ItemsFragment extends Fragment {
+public class ItemsRecyclerViewFrescoFragment extends Fragment {
+  private static final String TAG = ItemsRecyclerViewFrescoFragment.class.getName();
   private static final String ARG_COUNT = "count";
 
   private int mCount;
   private Item[] mItems;
 
-  public static ItemsFragment newInstance(int count) {
-    ItemsFragment fragment = new ItemsFragment();
+  public static ItemsRecyclerViewFrescoFragment newInstance(int count) {
+    ItemsRecyclerViewFrescoFragment fragment = new ItemsRecyclerViewFrescoFragment();
     fragment.setArguments(getArgsBundle(count));
     return fragment;
   }
@@ -32,7 +34,7 @@ public class ItemsFragment extends Fragment {
     return args;
   }
 
-  public ItemsFragment() {
+  public ItemsRecyclerViewFrescoFragment() {
     // Required empty public constructor
   }
 
@@ -48,36 +50,28 @@ public class ItemsFragment extends Fragment {
   private void initItems() {
     mItems = new Item[mCount];
     for (int i=0; i<mCount; i++) {
-      mItems[i] = new Item("Random 8 imgs", new String[] {
-          "http://lorempixel.com/100/100/?item=0&section=" + i,
-          "http://lorempixel.com/100/100/?item=1&section=" + i,
-          "http://lorempixel.com/100/100/?item=2&section=" + i,
-          "http://lorempixel.com/100/100/?item=3&section=" + i,
-          "http://lorempixel.com/100/100/?item=4&section=" + i,
-          "http://lorempixel.com/100/100/?item=5&section=" + i,
-          "http://lorempixel.com/100/100/?item=6&section=" + i,
-          "http://lorempixel.com/100/100/?item=7&section=" + i,
-          "http://lorempixel.com/100/100/?item=8&section=" + i,
+      mItems[i] = new Item("Row " + i, new Uri[] {
+          Uri.parse("http://lorempixel.com/100/100/?item=0&section=" + i),
+          Uri.parse("http://lorempixel.com/100/100/?item=1&section=" + i),
+          Uri.parse("http://lorempixel.com/100/100/?item=2&section=" + i),
+          Uri.parse("http://lorempixel.com/100/100/?item=3&section=" + i),
+          Uri.parse("http://lorempixel.com/100/100/?item=4&section=" + i),
+          Uri.parse("http://lorempixel.com/100/100/?item=5&section=" + i),
+          Uri.parse("http://lorempixel.com/100/100/?item=6&section=" + i),
+          Uri.parse("http://lorempixel.com/100/100/?item=7&section=" + i),
+          Uri.parse("http://lorempixel.com/100/100/?item=8&section=" + i)
       });
-    }
-  }
-
-  private static class Item {
-    String mText;
-    String[] mImageUrls;
-
-    public Item(String text, String[] imageUrls) {
-      mText = text;
-      mImageUrls = imageUrls;
     }
   }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
-    View rootView = inflater.inflate(R.layout.fragment_items, container, false);
+    View rootView = inflater.inflate(R.layout.fragment_items_recycler_view, container, false);
     RecyclerView recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
+    recyclerView.setHasFixedSize(true);
     LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+    layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
     recyclerView.setLayoutManager(layoutManager);
     recyclerView.setAdapter(new ItemAdapter(mItems));
     return rootView;
@@ -93,7 +87,7 @@ public class ItemsFragment extends Fragment {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-      View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_item, viewGroup, false);
+      View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.row_item_fresco, viewGroup, false);
       return new ViewHolder(v);
     }
 
@@ -101,14 +95,14 @@ public class ItemsFragment extends Fragment {
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
       Item item = mItems[i];
       viewHolder.mTextView.setText(item.mText);
-      viewHolder.mImageView0.setImageURI(Uri.parse(item.mImageUrls[0]));
-      viewHolder.mImageView1.setImageURI(Uri.parse(item.mImageUrls[1]));
-      viewHolder.mImageView2.setImageURI(Uri.parse(item.mImageUrls[2]));
-      viewHolder.mImageView3.setImageURI(Uri.parse(item.mImageUrls[3]));
-      viewHolder.mImageView4.setImageURI(Uri.parse(item.mImageUrls[4]));
-      viewHolder.mImageView5.setImageURI(Uri.parse(item.mImageUrls[5]));
-      viewHolder.mImageView6.setImageURI(Uri.parse(item.mImageUrls[6]));
-      viewHolder.mImageView7.setImageURI(Uri.parse(item.mImageUrls[7]));
+      viewHolder.mImageView0.setImageURI(item.mImageUrls[0]);
+      viewHolder.mImageView1.setImageURI(item.mImageUrls[1]);
+      viewHolder.mImageView2.setImageURI(item.mImageUrls[2]);
+      viewHolder.mImageView3.setImageURI(item.mImageUrls[3]);
+      viewHolder.mImageView4.setImageURI(item.mImageUrls[4]);
+      viewHolder.mImageView5.setImageURI(item.mImageUrls[5]);
+      viewHolder.mImageView6.setImageURI(item.mImageUrls[6]);
+      viewHolder.mImageView7.setImageURI(item.mImageUrls[7]);
     }
 
     @Override
