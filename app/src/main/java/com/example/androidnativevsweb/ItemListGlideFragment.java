@@ -5,7 +5,6 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,15 +16,15 @@ import com.bumptech.glide.Glide;
 
 /**
  */
-public class ItemListFragment extends ListFragment {
+public class ItemListGlideFragment extends ListFragment {
 
-  private static final String TAG = ItemListFragment.class.getName();
+  private static final String TAG = ItemListGlideFragment.class.getName();
   private static final String ARG_COUNT = "count";
 
   private int mCount;
 
-  public static ItemListFragment newInstance(int count) {
-    ItemListFragment fragment = new ItemListFragment();
+  public static ItemListGlideFragment newInstance(int count) {
+    ItemListGlideFragment fragment = new ItemListGlideFragment();
     fragment.setArguments(getArgsBundle(count));
     return fragment;
   }
@@ -36,7 +35,7 @@ public class ItemListFragment extends ListFragment {
     return args;
   }
 
-  public ItemListFragment() {
+  public ItemListGlideFragment() {
   }
 
   @Override
@@ -88,14 +87,14 @@ public class ItemListFragment extends ListFragment {
 
       Item item = getItem(position);
       viewHolder.mTextView.setText(item.mText);
-      Glide.with(ItemListFragment.this).load(item.mImageUrls[0]).into(viewHolder.mImageView0);
-      Glide.with(ItemListFragment.this).load(item.mImageUrls[1]).into(viewHolder.mImageView1);
-      Glide.with(ItemListFragment.this).load(item.mImageUrls[2]).into(viewHolder.mImageView2);
-      Glide.with(ItemListFragment.this).load(item.mImageUrls[3]).into(viewHolder.mImageView3);
-      Glide.with(ItemListFragment.this).load(item.mImageUrls[4]).into(viewHolder.mImageView4);
-      Glide.with(ItemListFragment.this).load(item.mImageUrls[5]).into(viewHolder.mImageView5);
-      Glide.with(ItemListFragment.this).load(item.mImageUrls[6]).into(viewHolder.mImageView6);
-      Glide.with(ItemListFragment.this).load(item.mImageUrls[7]).into(viewHolder.mImageView7);
+      Glide.with(ItemListGlideFragment.this).load(item.mImageUrls[0]).into(viewHolder.mImageView0);
+      Glide.with(ItemListGlideFragment.this).load(item.mImageUrls[1]).into(viewHolder.mImageView1);
+      Glide.with(ItemListGlideFragment.this).load(item.mImageUrls[2]).into(viewHolder.mImageView2);
+      Glide.with(ItemListGlideFragment.this).load(item.mImageUrls[3]).into(viewHolder.mImageView3);
+      Glide.with(ItemListGlideFragment.this).load(item.mImageUrls[4]).into(viewHolder.mImageView4);
+      Glide.with(ItemListGlideFragment.this).load(item.mImageUrls[5]).into(viewHolder.mImageView5);
+      Glide.with(ItemListGlideFragment.this).load(item.mImageUrls[6]).into(viewHolder.mImageView6);
+      Glide.with(ItemListGlideFragment.this).load(item.mImageUrls[7]).into(viewHolder.mImageView7);
       return convertView;
     }
   }

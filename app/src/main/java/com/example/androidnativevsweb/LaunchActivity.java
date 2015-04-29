@@ -27,8 +27,9 @@ public class LaunchActivity extends AppCompatActivity {
     //mTabHost.addTab(mTabHost.newTabSpec("webview10").setIndicator("WebView10"), CustomWebViewFragment.class, CustomWebViewFragment.getArgsBundle("file:///android_asset/list10.html"));
     //mTabHost.addTab(mTabHost.newTabSpec("webview20").setIndicator("WebView20"), CustomWebViewFragment.class, CustomWebViewFragment.getArgsBundle("file:///android_asset/list20.html"));
     mTabHost.addTab(mTabHost.newTabSpec("webview100").setIndicator("WebView100"), CustomWebViewFragment.class, CustomWebViewFragment.getArgsBundle("file:///android_asset/list100.html"));
-    mTabHost.addTab(mTabHost.newTabSpec("fresco").setIndicator("Fresco"), ItemsRecyclerViewFrescoFragment.class, ItemsRecyclerViewFrescoFragment.getArgsBundle(100));
+    //mTabHost.addTab(mTabHost.newTabSpec("fresco").setIndicator("Fresco"), ItemsRecyclerViewFrescoFragment.class, ItemsRecyclerViewFrescoFragment.getArgsBundle(100));
     //mTabHost.addTab(mTabHost.newTabSpec("glide").setIndicator("Glide"), ItemsRecyclerViewFrescoFragment.class, ItemsRecyclerViewGlideFragment.getArgsBundle(100));
-    mTabHost.addTab(mTabHost.newTabSpec("frescolist").setIndicator("FrescoList"), ItemListFragment.class, ItemListFragment.getArgsBundle(100));
+    mTabHost.addTab(mTabHost.newTabSpec("frescolist").setIndicator("FrescoList"), ItemListFrescoFragment.class, ItemListFrescoFragment.getArgsBundle(100));
+    mTabHost.addTab(mTabHost.newTabSpec("glidelist").setIndicator("GlideList"), ItemListGlideFragment.class, ItemListGlideFragment.getArgsBundle(100));
   }
 }
